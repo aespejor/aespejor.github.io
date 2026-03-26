@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrés Felipe Espejo Rivera | CEPAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1612;
+    --ink-mid: #3d3530;
+    --ink-light: #6b6259;
+    --ink-faint: #a09488;
+    --paper: #faf8f4;
+    --paper-warm: #f3efe8;
+    --paper-rule: #e8e2d8;
+    --accent: #2c4a6e;
+    --accent-light: #4a6f99;
+    --accent-faint: #dde6f0;
+    --gold: #8b6914;
+    --gold-light: #c9a84c;
+    --serif: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Source Sans 3', system-ui, sans-serif;
+    --max: 860px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--serif);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,248,244,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--paper-rule);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 2rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 35px,
+        rgba(139,105,20,0.06) 35px,
+        rgba(139,105,20,0.06) 36px
+      );
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold-light);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--ink-mid);
+  }
+
+  .hero-title {
+    font-family: var(--sans);
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+    font-weight: 400;
+  }
+
+  .hero-bio {
+    font-size: 17px;
+    color: var(--ink-mid);
+    line-height: 1.8;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1.5rem;
+    font-family: var(--sans);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background: #1e3650;
+    border-color: #1e3650;
+  }
+
+  .btn-outline {
+    background: transparent;
+    border-color: var(--paper-rule);
+    color: var(--ink-mid);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .hero-monogram {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: var(--accent-faint);
+    border: 2px solid var(--paper-rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .hero-monogram::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 1px solid rgba(44,74,110,0.2);
+  }
+
+  .hero-monogram span {
+    font-family: var(--serif);
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    font-style: italic;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 2rem;
+  }
+
+  section:nth-child(even) {
+    background: var(--paper-warm);
+  }
+
+  .section-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--paper-rule);
+  }
+
+  .section-number {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 17px;
+    color: var(--ink-mid);
+    margin-bottom: 1.2rem;
+    line-height: 1.85;
+  }
+
+  .about-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--paper-rule);
+  }
+
+  .meta-item:first-child {
+    border-top: 1px solid var(--paper-rule);
+  }
+
+  .meta-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.2rem;
+  }
+
+  .meta-value {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink-mid);
+  }
+
+  /* ── RESEARCH ── */
+  .research-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .research-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--paper-rule);
+  }
+
+  .research-item:first-child {
+    border-top: 1px solid var(--paper-rule);
+  }
+
+  .research-year {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-faint);
+    padding-top: 0.2rem;
+  }
+
+  .research-content {}
+
+  .research-type {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .research-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .research-authors {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .research-venue {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  /* ── AREAS ── */
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .area-card {
+    padding: 1.8rem;
+    border: 1px solid var(--paper-rule);
+    background: var(--paper);
+    position: relative;
+  }
+
+  .area-card::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gold-light);
+    margin-bottom: 1.2rem;
+  }
+
+  .area-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+
+  .area-desc {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.65;
+  }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .contact-text {
+    font-size: 17px;
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--paper-rule);
+    text-decoration: none;
+    color: var(--ink-mid);
+    transition: color 0.2s;
+  }
+
+  .contact-link:first-child {
+    border-top: 1px solid var(--paper-rule);
+  }
+
+  .contact-link:hover { color: var(--accent); }
+
+  .contact-link-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    width: 80px;
+    flex-shrink: 0;
+  }
+
+  .contact-link-value {
+    font-family: var(--serif);
+    font-size: 16px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2.5rem 2rem;
+    border-top: 1px solid var(--paper-rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .footer-inst {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-monogram { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .areas-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .research-item { grid-template-columns: 1fr; gap: 0.3rem; }
+    .nav-links { gap: 1.2rem; }
+    h1 { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#inicio">A.F. Espejo Rivera</a>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#investigacion">Investigación</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Economista</div>
+      <h1>Andrés Felipe<br><em>Espejo Rivera</em></h1>
+      <p class="hero-title">Oficial de Asuntos Económicos &nbsp;·&nbsp; CEPAL, Naciones Unidas</p>
+      <p class="hero-bio">
+        Economista especializado en análisis de políticas de desarrollo, desigualdad y transformación productiva en América Latina y el Caribe. Mi trabajo en la Comisión Económica para América Latina y el Caribe (CEPAL) se orienta a la producción de investigación aplicada para apoyar la toma de decisiones de política pública en la región.
+      </p>
+      <div class="hero-ctas">
+        <a href="#investigacion" class="btn btn-primary">Ver investigación</a>
+        <a href="#contacto" class="btn btn-outline">Contacto</a>
+        <a href="#cv" class="btn btn-outline">Descargar CV</a>
+      </div>
+    </div>
+    <div class="hero-monogram">
+      <span>AE</span>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2>Sobre mí</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Soy Oficial de Asuntos Económicos en la División de Desarrollo Económico de la Comisión Económica para América Latina y el Caribe (CEPAL), organismo regional de las Naciones Unidas con sede en Santiago de Chile.
+        </p>
+        <p>
+          Mi trabajo se centra en el análisis económico aplicado, con énfasis en las dinámicas de crecimiento, distribución del ingreso, mercados laborales y políticas de desarrollo productivo en América Latina y el Caribe. Combino herramientas cuantitativas con análisis de política pública para generar insumos relevantes para la discusión regional.
+        </p>
+        <p>
+          He contribuido a publicaciones insignia de la CEPAL como el <em>Panorama Social</em>, el <em>Estudio Económico</em> y documentos de trabajo sobre transformación estructural, así como a proyectos de cooperación técnica con países de la región.
+        </p>
+      </div>
+      <div class="about-meta">
+        <div class="meta-item">
+          <span class="meta-label">Institución</span>
+          <span class="meta-value">CEPAL — Naciones Unidas</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Cargo</span>
+          <span class="meta-value">Oficial de Asuntos Económicos</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Sede</span>
+          <span class="meta-value">Santiago de Chile</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Idiomas</span>
+          <span class="meta-value">Español, Inglés</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Áreas temáticas</span>
+          <span class="meta-value">Desarrollo económico · Desigualdad · Políticas productivas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÁREAS -->
+<section>
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2>Áreas de investigación</h2>
+    </div>
+    <div class="areas-grid">
+      <div class="area-card">
+        <div class="area-title">Desarrollo económico y transformación estructural</div>
+        <p class="area-desc">Análisis de los patrones de crecimiento y cambio estructural en América Latina, con foco en heterogeneidad productiva y brechas de productividad.</p>
+      </div>
+      <div class="area-card">
+        <div class="area-title">Desigualdad y distribución del ingreso</div>
+        <p class="area-desc">Estudio de la evolución de la desigualdad en la región, sus determinantes estructurales y el efecto de políticas redistributivas y sociales.</p>
+      </div>
+      <div class="area-card">
+        <div class="area-title">Mercados laborales y empleo</div>
+        <p class="area-desc">Investigación sobre dinámica del empleo, informalidad laboral, salarios y el impacto de cambios tecnológicos y shocks macroeconómicos.</p>
+      </div>
+      <div class="area-card">
+        <div class="area-title">Política fiscal y social</div>
+        <p class="area-desc">Evaluación del rol de la política fiscal, los sistemas de protección social y el gasto público en el bienestar y la equidad en la región.</p>
+      </div>
+      <div class="area-card">
+        <div class="area-title">Coyuntura macroeconómica regional</div>
+        <p class="area-desc">Seguimiento y análisis de la situación económica de América Latina y el Caribe, incluyendo perspectivas de crecimiento, inflación y vulnerabilidades externas.</p>
+      </div>
+      <div class="area-card">
+        <div class="area-title">Cooperación técnica y política pública</div>
+        <p class="area-desc">Apoyo técnico a gobiernos de la región en diseño, implementación y evaluación de políticas de desarrollo económico y social.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIGACIÓN -->
+<section id="investigacion">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2>Publicaciones e investigación</h2>
+    </div>
+    <div class="research-list">
+
+      <div class="research-item">
+        <span class="research-year">2024</span>
+        <div class="research-content">
+          <div class="research-type">Publicación institucional</div>
+          <div class="research-title">Panorama Social de América Latina y el Caribe 2024</div>
+          <div class="research-authors">CEPAL (contribución)</div>
+          <div class="research-venue">Comisión Económica para América Latina y el Caribe, Santiago</div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <span class="research-year">2024</span>
+        <div class="research-content">
+          <div class="research-type">Publicación institucional</div>
+          <div class="research-title">Estudio Económico de América Latina y el Caribe 2024</div>
+          <div class="research-authors">CEPAL (contribución)</div>
+          <div class="research-venue">Comisión Económica para América Latina y el Caribe, Santiago</div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <span class="research-year">2023</span>
+        <div class="research-content">
+          <div class="research-type">Documento de trabajo</div>
+          <div class="research-title">Desigualdad y transformación productiva en América Latina: vínculos y desafíos de política</div>
+          <div class="research-authors">Espejo Rivera, A.F. et al.</div>
+          <div class="research-venue">Serie Macroeconomía del Desarrollo, CEPAL</div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <span class="research-year">2022</span>
+        <div class="research-content">
+          <div class="research-type">Nota técnica</div>
+          <div class="research-title">Mercados laborales post-pandemia: recuperación desigual y riesgos estructurales</div>
+          <div class="research-authors">CEPAL (contribución)</div>
+          <div class="research-venue">Informe especial COVID-19, CEPAL</div>
+        </div>
+      </div>
+
+    </div>
+    <p style="font-family: var(--sans); font-size: 13px; color: var(--ink-faint); margin-top: 1.5rem; font-style: italic;">
+      * Lista ilustrativa — actualizar con publicaciones reales.
+    </p>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv" style="background: var(--accent); padding: 5rem 2rem;">
+  <div class="section-inner" style="text-align: center;">
+    <p style="font-family: var(--sans); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 1rem;">Currículum Vitae</p>
+    <h2 style="color: #fff; margin-bottom: 1rem; font-size: 2rem;">Descargue mi CV completo</h2>
+    <p style="font-family: var(--sans); font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto;">
+      Historial académico, experiencia profesional y publicaciones completas en formato PDF.
+    </p>
+    <a href="#" class="btn" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); color: #fff; font-size: 13px; padding: 0.75rem 2rem;">
+      ↓ &nbsp; Descargar CV (PDF)
+    </a>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2>Contacto</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-text">
+        <p>Si tiene interés en colaborar, discutir investigación o coordinar actividades de cooperación técnica, puede contactarme a través de los canales institucionales de CEPAL o por LinkedIn.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:andres.espejo@cepal.org" class="contact-link">
+          <span class="contact-link-label">Correo</span>
+          <span class="contact-link-value">andres.espejo@cepal.org</span>
+        </a>
+        <a href="https://www.linkedin.com/in/espejoandres/" target="_blank" class="contact-link">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-value">linkedin.com/in/espejoandres</span>
+        </a>
+        <a href="https://www.cepal.org" target="_blank" class="contact-link">
+          <span class="contact-link-label">Institución</span>
+          <span class="contact-link-value">cepal.org</span>
+        </a>
+        <div class="contact-link" style="color: var(--ink-faint);">
+          <span class="contact-link-label">Sede</span>
+          <span class="contact-link-value" style="font-family: var(--serif); font-size: 16px;">Santiago de Chile, Chile</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-name">Andrés Felipe Espejo Rivera</span>
+    <span class="footer-inst">CEPAL · Naciones Unidas · Santiago</span>
+  </div>
+</footer>
+
+</body>
+</html>
